@@ -3,7 +3,7 @@
 AWS Skill Builder ラボ *「Multi-part Uploads, Batch Operations, and Cross-Region Replication with S3」* を題材に、
 ラボが省略している **運用監視の観点** を Terraform で再現し、実機で測る。
 
-実測値・考察は記事 `docs/`（執筆予定）に記載。本READMEは **再現手順（Runbook）** を扱う。
+実測値・考察は別途まとめる（本リポジトリには含めない）。本READMEは **再現手順（Runbook）** を扱う。
 
 ## 検証する想定（仮説）
 

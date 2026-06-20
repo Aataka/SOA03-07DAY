@@ -42,6 +42,12 @@ terraform.rc
 # 作業用一時ファイル（_check.sh / _plan.log / _lib.sh 等。入れ子クォート回避用）
 _*
 
+# Zenn記事・学習足場はGitHubに公開しない（ローカルのみ保持・公開はZenn側）
+# 公開リポジトリは Terraform/IaC ＋ README のみ
+*-zenn.md
+docs/
+study/
+
 # OS
 .DS_Store
 Thumbs.db

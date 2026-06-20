@@ -93,20 +93,24 @@ resource "aws_s3_bucket_replication_configuration" "source" {
       bucket        = aws_s3_bucket.dest.arn
       storage_class = "GLACIER_IR" # Glacier Instant Retrieval
 
-      metrics {
-        status = var.enable_replication_metrics ? "Enabled" : "Disabled"
-        dynamic "event_threshold" {
-          for_each = var.enable_replication_metrics ? [1] : []
-          content {
+      # メトリクス/RTC は無効時にブロックごと省く（status=Disabled で残すとAPIに弾かれるため）
+      dynamic "metrics" {
+        for_each = var.enable_replication_metrics ? [1] : []
+        content {
+          status = "Enabled"
+          event_threshold {
             minutes = 15
           }
         }
       }
 
-      replication_time {
-        status = (var.enable_rtc && var.enable_replication_metrics) ? "Enabled" : "Disabled"
-        time {
-          minutes = 15
+      dynamic "replication_time" {
+        for_each = (var.enable_rtc && var.enable_replication_metrics) ? [1] : []
+        content {
+          status = "Enabled"
+          time {
+            minutes = 15
+          }
         }
       }
     }
